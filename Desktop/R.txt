@@ -1,0 +1,83 @@
+// Vectors and Data Frames
+getwd()==for seeing the directory
+		//seq(start,till,interval) 
+1.Combine function for vectors=c(1,2,3)
+2.For initializing a data frame = data.frame(country,population)
+3.For adding new variable ( or column) => coutry$height=c(1,2,3)
+4.Now for adding two data frames New=rbind(old,new)
+
+//Loading Data FIles
+File-> Change_Directory ->choose folder where we kept the file
+1.Saving data in a variable 
+WHO=read.scv("WHO.csv")
+2.To see the structure of the data str(WHO) 
+3.To see summary == summary(WHO)
+4.To see the subset ==subset(WHO,region=="Europe")
+5.To write in a file == > write.csv(dataframe,"file_name")
+
+//To analyse
+
+who=read.csv("WHO.csv")
+str(who) // To get the name of the variable and number of entries
+1.To access a particular variable == > who$Under15
+2. To calculate mean or standard Deviation==> mean(who$under15) sd(who$under15)
+3.to get a summary summary(who$under15)
+4.To get min. == which.min(who$under15) == this will give index i.e. row no. ==to see which country .. who$country[86]
+
+5. To get a plot ==plot(who$FertilityRate,who$GNI)
+6.For limited values and conditions == outliers=subset(who,rate>2.5 & GNI>10000)
+Now to get a table == > outlier[c("country","gni","rate")]
+
+7.To get the histogram == > hist(who$CellularSubscribers,xlab="nfjdh",ylab="wfdg",main="dg",xlim=c(0,100),breaks=1000)// To label the axes
+8.To get the box plot ==> boxplot(who$LifeExp ~ who$Region)
+9.To get the table table(who$x)		//table(usda$a,usda$b)// this give the possible combinations of the data related to both 
+10. tapply(who$LiteracyRate,who$Region,mean,na.rm=TRUE) //ra thing for not applicable values if left blank in the file for some entries  		// This function will give the name of the regions along with the mean value of their literacy rates
+11. to get the names of the variable==> names(who)
+
+12.To get the number of rows after subset function ==> nrow(highsodium)
+13. usda$highsodium=as.numeric(usda$Sodium>mean(usda$Sodium,na.rm=TRUE))  //this adds a anew variable called highsodium into the usda data frame 
+> str(highsodium)
+ num [1:7058] 1 1 0 1 1 1 1 1 1 1 ...
+
+
+13. Tp match the entries of the data ..we use == > match("CAVIAR",usda$Description)
+
+14.To generate vertical lines at diff. locations ==> abline(v=as.Date(c("2000-03-01")), lwd=2)
+
+15. data = merge(data, MetroAreaMap, by.x="MetroAreaCode", by.y="Code", all.x=TRUE)	//For merging two data frames and comapring & putting the value of one data frame into another
+
+
+
+//For building Linear Regression Model
+1.lm function ==> model1=lm(Price~AGST,data=dataset)
+2. To get the correlation (mmegha something related to the gradient)  ==>  cor(wine$Price,wine$Rain)
+3.To find the correlation between all the variables which ca give output as a grid.. cor(wine)
+
+
+PRedictions:
+1. To remove the variables automatically from the model i.e. it will automate & reduce ur work ==> step(model)// model which already used lm function :P
+
+//To get the help in R == > ?step 
+
+//For Logistic regression
+1. glm function ..same as lm for linear===> log1=glm(PoorCare~OfficeVisits+Narcotics,data=train,family=binomial)
+2.If we want to split the train & test data from one data itself ..
+install.packages("caTools")
+library(caTools)
+> set.seed(88)
+> split=sample.split(quality$PoorCare,SplitRatio=0.75)
+> split
+  [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE
+ [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+ train=subset(quality,split==TRUE)
+> test=subset(quality,split==FALSE)
+
+package (ROCR) // Also package "mice"
+
+// Dealing with missing data in R using mice package
+ simple=pd[c("Rasmussen","SurveyUSA","DiffCount","PropR")]
+> summary(simple)
+> set.seed(144)
+> imputed=complete(mice(simple))
+> pd$Rasmussen=imputed$Rasmussen
+> pd$SurveyUSA=imputed$SurveyUSA
