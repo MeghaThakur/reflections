@@ -1,6 +1,7 @@
 // Vectors and Data Frames
 getwd()==for seeing the directory
 //Lalalala
+//for 2nd branch
 		//seq(start,till,interval) 
 1.Combine function for vectors=c(1,2,3)
 2.For initializing a data frame = data.frame(country,population)
